@@ -12,6 +12,7 @@
 #include "Szczur/Modules/Canvas/Canvas.hpp"
 #include "Szczur/Modules/GUI/GUI.hpp"
 #include "Szczur/Modules/HUD/HUD.hpp"
+#include "Szczur/Modules/Menu/Menu.hpp"
 
 namespace rat
 {
@@ -28,8 +29,9 @@ private:
 		Input,
 		Assets,
 		Canvas,
+		HUD,
 		GUI,
-		HUD
+		Menu
 	> _modules;
 
 	// Window

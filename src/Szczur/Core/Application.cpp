@@ -21,6 +21,7 @@ Application::Application()
 	_modules.getModule<Canvas>().init(&_window);
 	_modules.getModule<HUD>().init();
 	_modules.getModule<GUI>().init();
+	_modules.getModule<Menu>().init();
 }
 
 void Application::changeResolution(const sf::Vector2u& size)

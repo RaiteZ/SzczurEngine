@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "Szczur/Modules/Canvas/Canvas.hpp"
 #include "Szczur/Utility/Modules.hpp"
@@ -20,6 +21,20 @@ namespace rat {
         void update(float deltaTime);
         void render();
         void reload();
+
+        template<typename T>
+        void loadAsset(const std::string& file){
+            _assets.loadFromFile<T>(file);
+        }
+
+        template<typename T>
+        T* getAsset(const std::string& file) const {
+            return _assets.get<T>(file);
+        }
+
+        Widget* add(Widget* obj) {
+            return _root.add(obj);
+        }
     private:
         Widget _root;
         GuiJson _guiJson;

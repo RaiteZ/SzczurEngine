@@ -4,9 +4,24 @@
 #include <fstream>
 
 namespace rat {
+    /*template<typename T>
+    void GUI::loadAsset(const std::string& file) {
+        _assets.loadFromFile<T>(file);
+    }
+
+    template<typename T>
+    T* GUI::getAsset(const std::string& file) const {
+        return _assets.get<T>(file);
+    }
+
+    Widget* GUI::add(Widget* obj) {
+        return _root.add(obj);
+    }*/
+
+
     void GUI::init() {
         
-        _assets.loadFromFile<sf::Texture>("data/button.png");
+        /*_assets.loadFromFile<sf::Texture>("data/button.png");
         _assets.loadFromFile<sf::Texture>("data/button-active.png");
         _assets.loadFromFile<sf::Texture>("data/button-clicked.png");
         _assets.loadFromFile<sf::Texture>("data/check.png");
@@ -15,6 +30,8 @@ namespace rat {
         _assets.loadFromFile<sf::Texture>("data/button.png");
         _assets.loadFromFile<Json>("data/json.json");
         _guiJson.init(_assets.get<Json>("data/json.json"), &_assets, &_root, _getModule<Canvas>().getWindow().getSize());
+        */
+        //_assets.loadFromFile<sf::Texture>("data/background.jpg");
     }
 
     
