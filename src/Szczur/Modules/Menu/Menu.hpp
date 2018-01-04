@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Szczur/Modules/GUI/GUI.hpp"
+#include "Szczur/Modules/Canvas/Canvas.hpp"
 #include "Szczur/Utility/Modules.hpp"
 
 #include "Szczur/Modules/GUI/ImageWidget.hpp"
@@ -11,7 +12,7 @@
 
 
 namespace rat {
-    class Menu : public Module<GUI>, Module<>::Inputable {
+    class Menu : public Module<GUI, Canvas>, Module<>::Inputable {
         using Module::Module;
     public:
         void init();

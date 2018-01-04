@@ -63,8 +63,9 @@ namespace rat {
             return true;
         });
 
-        exit->setCallback(Widget::CallbackType::onRelease, [exit, &gui](Widget*){
+        exit->setCallback(Widget::CallbackType::onRelease, [exit, &gui, this](Widget*){
             exit->setTexture(gui.getAsset<sf::Texture>("data/exit-hover.png"));
+            _getModule<Canvas>().getWindow().close();
             return true;
         });
 
