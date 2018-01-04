@@ -3,36 +3,68 @@
 namespace rat {
     void Menu::init() {
         auto& gui = _getModule<GUI>();
-        gui.loadAsset<sf::Texture>("data/background.jpg");
-        gui.loadAsset<sf::Font>("data/consolab.ttf");
+        gui.loadAsset<sf::Texture>("data/resume.png");
+        gui.loadAsset<sf::Texture>("data/exit.png");
+        gui.loadAsset<sf::Texture>("data/resume-press.png");
+        gui.loadAsset<sf::Texture>("data/exit-press.png");
+        gui.loadAsset<sf::Texture>("data/resume-hover.png");
+        gui.loadAsset<sf::Texture>("data/exit-hover.png");
     
-        ImageWidget* bg = new ImageWidget(gui.getAsset<sf::Texture>("data/background.jpg"));
-        bg->setPosition(100,100);
+        Widget* bg = new Widget;
+        bg->setPosition(500,300);
         gui.add(bg);
 
-        TextWidget* resume = new TextWidget;
-        resume->setFont(gui.getAsset<sf::Font>("data/consolab.ttf"));
-        resume->setString("RESUME");
-        resume->setCharacterSize(20u);
-        resume->setColor(sf::Color(255,0,0));
-        resume->setPosition(sf::Vector2f(10.f, 10.f));
+        ImageWidget* resume = new ImageWidget(gui.getAsset<sf::Texture>("data/resume.png"));
 
-        TextWidget* leave = new TextWidget;
-        leave->setFont(gui.getAsset<sf::Font>("data/consolab.ttf"));
-        leave->setString("LEAVE");
-        leave->setCharacterSize(20u);
-        leave->setColor(sf::Color(255,0,0));
-        leave->setPosition(sf::Vector2f(10.f, 60.f));
+        ImageWidget* exit = new ImageWidget(gui.getAsset<sf::Texture>("data/exit.png"));
+        exit->setPosition(sf::Vector2f(0.f, 128.f));
 
         bg->add(resume);
-        bg->add(leave);
+        bg->add(exit);
 
         bg->deactivate();
         bg->invisible();
 
-        resume->setCallback(Widget::CallbackType::onRelease, [bg](Widget*){
+        resume->setCallback(Widget::CallbackType::onRelease, [bg, &gui, resume](Widget*){
+            resume->setTexture(gui.getAsset<sf::Texture>("data/resume-hover.png"));
             bg->deactivate();
             bg->invisible();
+            return true;
+        });
+
+        resume->setCallback(Widget::CallbackType::onHoverIn, [resume, &gui](Widget*){
+            resume->setTexture(gui.getAsset<sf::Texture>("data/resume-hover.png"));
+            return true;
+        });
+
+        resume->setCallback(Widget::CallbackType::onHoverOut, [resume, &gui](Widget*){
+            resume->setTexture(gui.getAsset<sf::Texture>("data/resume.png"));
+            return true;
+        });
+
+        resume->setCallback(Widget::CallbackType::onPress, [resume, &gui](Widget*){
+            resume->setTexture(gui.getAsset<sf::Texture>("data/resume-press.png"));
+            return true;
+        });
+
+
+        exit->setCallback(Widget::CallbackType::onHoverIn, [exit, &gui](Widget*){
+            exit->setTexture(gui.getAsset<sf::Texture>("data/exit-hover.png"));
+            return true;
+        });
+
+        exit->setCallback(Widget::CallbackType::onHoverOut, [exit, &gui](Widget*){
+            exit->setTexture(gui.getAsset<sf::Texture>("data/exit.png"));
+            return true;
+        });
+
+        exit->setCallback(Widget::CallbackType::onPress, [exit, &gui](Widget*){
+            exit->setTexture(gui.getAsset<sf::Texture>("data/exit-press.png"));
+            return true;
+        });
+
+        exit->setCallback(Widget::CallbackType::onRelease, [exit, &gui](Widget*){
+            exit->setTexture(gui.getAsset<sf::Texture>("data/exit-hover.png"));
             return true;
         });
 
@@ -40,7 +72,7 @@ namespace rat {
     }
 
     void Menu::input(const sf::Event& event) {
-        if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::A) {
+        if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Escape) {
             if(_bg->isActivated()) {
                 _bg->invisible();
                 _bg->deactivate();

@@ -19,7 +19,7 @@ public:
 
 	enum class LayerId : size_t
 	{
-		Back, Game, GUI, HUD,
+		Back, Game,  HUD,GUI,
 		Count
 	};
 
